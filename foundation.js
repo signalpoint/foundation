@@ -1,4 +1,4 @@
-var foundation = new dg.Module();
+dg.modules.foundation = new dg.Module();
 
 /**
  * Implements hook_form_alter().
