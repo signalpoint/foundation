@@ -20,9 +20,12 @@ css/             # Foundation 6 CSS
 ...              # A bunch of other files...
 ```
 
-Finally include the `foundation.css` file in the `<head>` of your app's `index.html` file
+Then include the `foundation.js` and `foundation.css` module files in the `<head>` of your app's `index.html` file:
 
 ```
+<!-- DrupalGap Modules -->
+<script src="modules/contrib/foundation/foundation.js"></script>
+
 <!-- Foundation CSS -->
 <link rel="stylesheet" href="css/foundation.css" />
 ```
