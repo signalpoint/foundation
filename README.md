@@ -6,7 +6,9 @@
 
 ## Installation
 
-First, download Foundation 6 for sites: http://foundation.zurb.com/sites/download/assets/complete-f6.zip
+First, download Foundation 6 for sites:
+
+- http://foundation.zurb.com/sites/download/assets/complete-f6.zip
 
 Then extract the `css` directory from the zip file into the app's `www` directory.
 
@@ -20,7 +22,7 @@ css/             # Foundation 6 CSS
 ...              # A bunch of other files...
 ```
 
-Then include the `foundation.js` and `foundation.css` module files in the `<head>` of your app's `index.html` file:
+Then include these two files in the `<head>` of your app's `index.html` file:
 
 ```
 <!-- DrupalGap Modules -->
