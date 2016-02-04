@@ -5,10 +5,10 @@ dg.modules.foundation = new dg.Module();
  */
 function foundation_blocks_build_alter(blocks) {
   if (blocks.admin_menu) {
-    blocks.admin_menu._attributes['class'].push('medium-6', 'columns');
+    blocks.admin_menu._attributes['class'].push('columns');
   }
   if (blocks.powered_by) {
-    blocks.powered_by._attributes['class'].push('medium-6', 'columns');
+    blocks.powered_by._attributes['class'].push('columns');
   }
   if (blocks.user_login) {
     if (!dg.currentUser().isAuthenticated() && dg.config('theme').name == 'frank' && dg.getPath() != 'user/login') {
