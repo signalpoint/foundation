@@ -10,6 +10,11 @@ function foundation_blocks_build_alter(blocks) {
   if (blocks.powered_by) {
     blocks.powered_by._attributes['class'].push('medium-6', 'columns');
   }
+  if (blocks.user_login) {
+    if (!dg.currentUser().isAuthenticated() && dg.config('theme').name == 'frank' && dg.getPath() != 'user/login') {
+      blocks.user_login._attributes['class'].push('top-bar-right');
+    }
+  }
 }
 
 /**
@@ -21,7 +26,7 @@ function foundation_block_view_alter(element, block) {
 
     // Make the main menu into a foundation menu.
     case 'main_menu':
-      element.menu._attributes['class'].push('menu');
+      element.menu._attributes['class'].push('menu', 'float-left');
       break;
 
     // Make the main menu into a foundation menu.
@@ -46,6 +51,8 @@ function foundation_block_view_alter(element, block) {
 function foundation_form_alter(form, form_state, form_id) {
   return new Promise(function(ok, err) {
 
+    form._after_build.push('foundation.afterBuild');
+
     // Add Foundation attributes to form elements.
     for (var name in form) {
       if (!dg.isFormElement(name, form)) { continue; }
@@ -54,20 +61,56 @@ function foundation_form_alter(form, form_state, form_id) {
         case 'actions':
           for (var _name in el) {
             if (!dg.isFormElement(name, form)) { continue; }
-            foundationFormElementAddAttributes(el[_name]);
+            dg.modules.foundation.formElementAddAttributes(el[_name]);
           }
           break;
         default:
-          foundationFormElementAddAttributes(el);
+          dg.modules.foundation.formElementAddAttributes(el);
           break;
       }
+    }
+
+    // Make any specific form alterations.
+    switch (form_id) {
+      case 'UserLoginForm':
+          // Wrap the login form block elements in a div row.
+          if (dg.config('theme').name == 'frank' && dg.getPath() != 'user/login') {
+            form._prefix = '<div class="row">';
+            form._suffix = '</div>';
+          }
+        break;
     }
 
     ok();
   });
 }
 
-function foundationFormElementAddAttributes(el) {
+/**
+ * An after build handler for all forms to prep the form for foundation presentation.
+ * @param form
+ * @param form_state
+ */
+dg.modules.foundation.afterBuild = function(form, form_state) {
+
+  //console.log(form);
+  //console.log(form_state);
+  //console.log(form_state.get('form'));
+
+
+  // Add some columns to the login form block.
+  if (form_state.get('form').getFormId() == 'UserLoginForm' && dg.getPath() != 'user/login') {
+    form.name._attributes['class'].push('medium-4 columns');
+    form.pass._attributes['class'].push('medium-4 columns');
+    form.actions._attributes['class'].push('medium-3 columns');
+  }
+
+};
+
+/**
+ * A helper function to prep form elements for foundation presentation.
+ * @param el
+ */
+dg.modules.foundation.formElementAddAttributes = function(el) {
   switch (el._type) {
     case 'submit':
       switch (el._button_type) {
@@ -80,4 +123,4 @@ function foundationFormElementAddAttributes(el) {
     default:
       break;
   }
-}
+};
