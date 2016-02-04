@@ -29,6 +29,12 @@ function foundation_block_view_alter(element, block) {
       element.menu._attributes['class'].push('menu', 'float-left');
       break;
 
+    case 'user_login':
+        if (dg.currentUser().isAuthenticated()) {
+          element.menu._attributes['class'].push('menu', 'float-right');
+        }
+      break;
+
     // Make the main menu into a foundation menu.
     case 'admin_menu':
       element.menu._attributes['class'].push('menu');
