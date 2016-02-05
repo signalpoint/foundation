@@ -43,8 +43,7 @@ function foundation_block_view_alter(element, block) {
     // Make the powered by block into a foundation menu.
     case 'powered_by':
       element.list._items.push(dg.l('Foundation', 'http://foundation.zurb.com'));
-      element.list._items.reverse();
-      element.list._attributes['class'].push('menu', 'align-right');
+      element.list._attributes['class'].push('menu');
       break;
 
   }
