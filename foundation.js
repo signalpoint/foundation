@@ -24,23 +24,22 @@ function foundation_block_view_alter(element, block) {
 
   switch (block.get('id')) {
 
-    // Make the main menu into a foundation menu.
+    // Make the main menu into a menu.
     case 'main_menu':
       element.menu._attributes['class'].push('menu', 'float-left');
       break;
 
-    case 'user_login':
-        if (dg.currentUser().isAuthenticated()) {
-          element.menu._attributes['class'].push('menu', 'float-right');
-        }
+    // Make the user menu into a menu.
+    case 'user_menu':
+      element.menu._attributes['class'].push('menu', 'float-right');
       break;
 
-    // Make the main menu into a foundation menu.
+    // Make the main menu into a menu.
     case 'admin_menu':
       element.menu._attributes['class'].push('menu');
       break;
 
-    // Make the powered by block into a foundation menu.
+    // Make the powered by block into a menu.
     case 'powered_by':
       element.list._items.push(dg.l('Foundation', 'http://foundation.zurb.com'));
       element.list._attributes['class'].push('menu');
