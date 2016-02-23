@@ -29,5 +29,5 @@ Then include these two files in the `<head>` of your app's `index.html` file:
 <script src="modules/contrib/foundation/foundation.js"></script>
 
 <!-- Foundation CSS -->
-<link rel="stylesheet" href="css/foundation.css" />
+<link rel="stylesheet" href="css/foundation.min.css" />
 ```
