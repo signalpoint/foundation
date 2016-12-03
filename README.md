@@ -6,9 +6,9 @@
 
 ## Installation
 
-First, download Foundation 6 for sites:
+First, download Foundation 6 for Sites:
 
-- http://foundation.zurb.com/sites/download/assets/complete-f6.zip
+- http://foundation.zurb.com/sites/download.html/
 
 Then extract the `css` directory from the zip file into the app's `www` directory.
 
